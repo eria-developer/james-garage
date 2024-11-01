@@ -11,44 +11,62 @@ import {
   ThumbsUp,
   ChevronLeft,
   ChevronRight,
-  Quote
+  Quote,
 } from "lucide-react";
+import Image from "next/image";
 
-const TestimonialsAndTrustSection = () => {
-  const [activeTestimonial, setActiveTestimonial] = React.useState(0);
-  const [autoplay, setAutoplay] = React.useState(true);
+// Define types for testimonials and trust indicators
+interface Testimonial {
+  name: string;
+  vehicle: string;
+  service: string;
+  image: string;
+  rating: number;
+  text: string;
+  date: string;
+}
 
-  const testimonials = [
+interface TrustIndicator {
+  icon: React.ElementType; // Use React.ElementType for icon components
+  title: string;
+  description: string;
+}
+
+const TestimonialsAndTrustSection: React.FC = () => {
+  const [activeTestimonial, setActiveTestimonial] = React.useState<number>(0);
+  const [autoplay, setAutoplay] = React.useState<boolean>(true);
+
+  const testimonials: Testimonial[] = [
     {
-      name: "Sarah Johnson",
+      name: "Ayikoru Sarah",
       vehicle: "Toyota Camry",
       service: "Full Service & Brake Repair",
       image: "/testimonial1.jpg",
       rating: 5,
       text: "Absolutely outstanding service! They diagnosed and fixed my brake issue quickly and professionally. The team kept me informed throughout the entire process.",
-      date: "2 weeks ago"
+      date: "2 weeks ago",
     },
     {
-      name: "Michael Brown",
+      name: "Anguzu Michael",
       vehicle: "BMW 3 Series",
       service: "Engine Diagnostics",
       image: "/testimonial2.jpg",
       rating: 5,
       text: "The expertise here is unmatched. They found an issue that two other garages missed. Saved me from a potentially expensive repair down the line.",
-      date: "1 month ago"
+      date: "1 month ago",
     },
     {
-      name: "Emily Martinez",
+      name: "Chandiga Henry",
       vehicle: "Honda CR-V",
       service: "Regular Maintenance",
       image: "/testimonial3.jpg",
       rating: 5,
       text: "I've been bringing my CR-V here for 3 years now. Their attention to detail and honest advice have made me a customer for life. Highly recommended!",
-      date: "1 week ago"
-    }
+      date: "1 week ago",
+    },
   ];
 
-  const trustIndicators = [
+  const trustIndicators: TrustIndicator[] = [
     {
       icon: Shield,
       title: "Licensed & Certified",
@@ -68,20 +86,20 @@ const TestimonialsAndTrustSection = () => {
       icon: ThumbsUp,
       title: "Satisfaction Guaranteed",
       description: "100% satisfaction or your money back",
-    }
+    },
   ];
 
   const statistics = [
     { value: "15+", label: "Years Experience" },
     { value: "10k+", label: "Happy Customers" },
     { value: "98%", label: "Satisfaction Rate" },
-    { value: "24/7", label: "Emergency Service" }
+    { value: "24/7", label: "Emergency Service" },
   ];
 
   React.useEffect(() => {
     if (!autoplay) return;
     const timer = setInterval(() => {
-      setActiveTestimonial((prev) => 
+      setActiveTestimonial((prev) =>
         prev === testimonials.length - 1 ? 0 : prev + 1
       );
     }, 5000);
@@ -90,14 +108,14 @@ const TestimonialsAndTrustSection = () => {
 
   const handlePrevious = () => {
     setAutoplay(false);
-    setActiveTestimonial((prev) => 
+    setActiveTestimonial((prev) =>
       prev === 0 ? testimonials.length - 1 : prev - 1
     );
   };
 
   const handleNext = () => {
     setAutoplay(false);
-    setActiveTestimonial((prev) => 
+    setActiveTestimonial((prev) =>
       prev === testimonials.length - 1 ? 0 : prev + 1
     );
   };
@@ -106,7 +124,7 @@ const TestimonialsAndTrustSection = () => {
     <div className="relative py-24 bg-gradient-to-b from-gray-900 to-black">
       {/* Animated background pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_24px]" />
-      
+
       <div className="relative max-w-7xl mx-auto px-4">
         {/* Trust Indicators */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
@@ -125,7 +143,9 @@ const TestimonialsAndTrustSection = () => {
                       <indicator.icon className="relative w-10 h-10 text-orange-500" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-white">{indicator.title}</h3>
+                      <h3 className="text-lg font-semibold text-white">
+                        {indicator.title}
+                      </h3>
                       <p className="text-gray-400">{indicator.description}</p>
                     </div>
                   </div>
@@ -167,7 +187,8 @@ const TestimonialsAndTrustSection = () => {
             animate={{ y: 0, opacity: 1 }}
             className="text-xl text-gray-400"
           >
-            Don't just take our word for it - hear from our satisfied customers
+            Don&apos;t just take our word for it - hear from our satisfied
+            customers
           </motion.p>
         </div>
 
@@ -187,10 +208,12 @@ const TestimonialsAndTrustSection = () => {
                     <div className="relative">
                       <div className="w-24 h-24 rounded-full overflow-hidden relative">
                         <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-amber-500 opacity-50" />
-                        <img
+                        <Image
                           src="/api/placeholder/96/96"
                           alt={testimonials[activeTestimonial].name}
                           className="object-cover"
+                          width={96}
+                          height={96}
                         />
                       </div>
                       <Badge className="absolute -bottom-2 -right-2 bg-orange-500">
@@ -199,9 +222,14 @@ const TestimonialsAndTrustSection = () => {
                     </div>
                     <div className="flex-1 text-center md:text-left">
                       <div className="flex justify-center md:justify-start items-center gap-2 mb-2">
-                        {[...Array(testimonials[activeTestimonial].rating)].map((_, i) => (
-                          <Star key={i} className="w-5 h-5 fill-orange-500 text-orange-500" />
-                        ))}
+                        {[...Array(testimonials[activeTestimonial].rating)].map(
+                          (_, i) => (
+                            <Star
+                              key={i}
+                              className="w-5 h-5 fill-orange-500 text-orange-500"
+                            />
+                          )
+                        )}
                       </div>
                       <p className="text-lg text-gray-300 mb-4 pl-8">
                         {testimonials[activeTestimonial].text}
@@ -211,7 +239,8 @@ const TestimonialsAndTrustSection = () => {
                           {testimonials[activeTestimonial].name}
                         </p>
                         <p className="text-gray-400">
-                          {testimonials[activeTestimonial].vehicle} - {testimonials[activeTestimonial].service}
+                          {testimonials[activeTestimonial].vehicle} -{" "}
+                          {testimonials[activeTestimonial].service}
                         </p>
                         <p className="text-sm text-gray-500">
                           {testimonials[activeTestimonial].date}
@@ -251,10 +280,10 @@ const TestimonialsAndTrustSection = () => {
           animate={{ y: 0, opacity: 1 }}
           className="text-center mt-16"
         >
-          <Button 
+          <Button
             size="lg"
             className="bg-orange-500 hover:bg-orange-600 text-lg px-8"
-            onClick={() => window.location.href = '/book-service'}
+            onClick={() => (window.location.href = "/book-service")}
           >
             Schedule Your Service Today
           </Button>

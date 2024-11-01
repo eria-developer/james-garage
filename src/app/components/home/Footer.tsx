@@ -26,10 +26,6 @@ interface QuickLink {
   url: string;
 }
 
-interface NewsletterFormData {
-  email: string;
-}
-
 const Footer: React.FC = () => {
   const [email, setEmail] = React.useState<string>("");
   const [isSubscribed, setIsSubscribed] = React.useState<boolean>(false);
@@ -50,7 +46,7 @@ const Footer: React.FC = () => {
     { text: "Career", url: "#" },
   ];
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (email) {
       setIsSubscribed(true);

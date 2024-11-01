@@ -1,41 +1,3 @@
-// import React from "react";
-
-// const CeoMessageSection: React.FC = () => {
-//   return (
-//     <div className="py-20 bg-gray-900 text-white">
-//       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center px-5 lg:px-0">
-//         {/* CEO Image */}
-//         <div className="md:w-1/2 flex justify-center mb-6 md:mb-0">
-//           <img
-//             src="/ceo.jpeg" // Replace with your CEO image path
-//             alt="CEO Name"
-//             className="w-48 h-48 rounded-full border-4 border-orange-500 shadow-lg transition-transform transform hover:scale-105"
-//           />
-//         </div>
-
-//         {/* CEO Message */}
-//         <div className="md:w-1/2 md:pl-10">
-//           <h2 className="text-4xl font-bold mb-6 text-orange-500">
-//             A Word From Our CEO
-//           </h2>
-//           <p className="text-lg leading-relaxed mb-12">
-//             "At [Your Garage Name], we are committed to providing top-notch
-//             automotive services that you can trust. Our team works diligently to
-//             ensure your vehicle is in the best hands, with a focus on quality,
-//             integrity, and customer satisfaction. Your safety and satisfaction
-//             are our top priorities, and we strive to exceed your expectations
-//             every step of the way."
-//           </p>
-//           <p className="text-lg font-semibold">[CEO Name]</p>
-//           <p className="text-md">CEO, [Your Garage Name]</p>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default CeoMessageSection;
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
@@ -72,7 +34,7 @@ const CeoMessageSection = () => {
                   className="bg-gray-800/50 border-orange-500/30 hover:bg-gray-700/50 text-orange-500"
                   onClick={() => setIsVideoOpen(true)}
                 >
-                  Watch CEO's Message
+                  Watch CEO&apos;s Message
                 </Button>
               </div>
 
@@ -101,7 +63,7 @@ const CeoMessageSection = () => {
                   <p className="text-lg leading-relaxed text-gray-300 pl-8">
                     At Javi Car Garage, we believe in setting new standards in
                     automotive excellence. Our commitment goes beyond mere
-                    service – we're building lasting relationships with our
+                    service – we&apos;re building lasting relationships with our
                     clients through trust, expertise, and unwavering dedication
                     to quality. Every vehicle that enters our garage receives
                     the same level of meticulous attention and care that I would

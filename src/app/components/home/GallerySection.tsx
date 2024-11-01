@@ -1,87 +1,7 @@
-// import React from "react";
-
-// interface Picture {
-//   src: string;
-//   alt: string;
-//   title: string;
-//   description: string;
-// }
-
-// const pictures: Picture[] = [
-//   {
-//     src: "/garage1.jpg",
-//     alt: "Mechanic working on engine",
-//     title: "Engine Diagnostics",
-//     description:
-//       "State-of-the-art diagnostics for accurate and reliable results.",
-//   },
-//   {
-//     src: "/garage2.jpg",
-//     alt: "Tire replacement",
-//     title: "Tire Replacement",
-//     description:
-//       "High-quality tire services for better safety and performance.",
-//   },
-//   {
-//     src: "/garage3.jpg",
-//     alt: "Oil change service",
-//     title: "Oil Change",
-//     description: "Regular oil changes to keep your engine running smoothly.",
-//   },
-//   {
-//     src: "/garage4.jpg",
-//     alt: "Battery check",
-//     title: "Battery Checks",
-//     description:
-//       "Battery testing and replacements for reliable starts every time.",
-//   },
-// ];
-
-// const GallerySection: React.FC = () => {
-//   return (
-//     <div className="py-20 bg-gradient-to-br from-gray-800 to-black text-white">
-//       <div className="max-w-7xl mx-auto text-center px-5 lg:px-0">
-//         <h2 className="text-4xl font-bold text-orange-500 mb-6">
-//           Our Work in Action
-//         </h2>
-//         <p className="text-lg leading-relaxed mb-12">
-//           Take a look at some of the services we provide. We believe in quality
-//           and efficiency, with a commitment to keeping your vehicle in top
-//           condition.
-//         </p>
-
-//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-//           {pictures.map((picture, index) => (
-//             <PictureCard key={index} {...picture} />
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// // Reusable card component for each picture
-// const PictureCard: React.FC<Picture> = ({ src, alt, title, description }) => (
-//   <div className="relative group">
-//     <img
-//       src={src}
-//       alt={alt}
-//       className="w-full h-64 object-cover rounded-lg shadow-lg transform transition-transform duration-300 group-hover:scale-105"
-//     />
-//     <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg p-4">
-//       <h3 className="text-xl font-semibold text-orange-400 mb-2">{title}</h3>
-//       <p className="text-gray-300">{description}</p>
-//     </div>
-//   </div>
-// );
-
-// export default GallerySection;
-
-
-
-import React, { useState } from 'react';
-import { Motion, ZoomIn, Camera } from 'lucide-react';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import React, { useState } from "react";
+import { ZoomIn, Camera } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import Image from "next/image";
 
 interface Picture {
   src: string;
@@ -95,16 +15,18 @@ const pictures: Picture[] = [
     src: "/garage1.jpg",
     alt: "Mechanic working on engine",
     title: "Engine Diagnostics",
-    description: "State-of-the-art diagnostics for accurate and reliable results.",
+    description:
+      "State-of-the-art diagnostics for accurate and reliable results.",
   },
   {
     src: "/garage2.jpg",
     alt: "Tire replacement",
     title: "Tire Replacement",
-    description: "High-quality tire services for better safety and performance.",
+    description:
+      "High-quality tire services for better safety and performance.",
   },
   {
-    src: "/garage3.jpg",
+    src: "/garage7.jpg",
     alt: "Oil change service",
     title: "Oil Change",
     description: "Regular oil changes to keep your engine running smoothly.",
@@ -113,7 +35,8 @@ const pictures: Picture[] = [
     src: "/garage4.jpg",
     alt: "Battery check",
     title: "Battery Checks",
-    description: "Battery testing and replacements for reliable starts every time.",
+    description:
+      "Battery testing and replacements for reliable starts every time.",
   },
 ];
 
@@ -138,9 +61,9 @@ const GallerySection = () => {
             </h2>
           </div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Take a look at some of the services we provide. We believe in quality
-            and efficiency, with a commitment to keeping your vehicle in top
-            condition.
+            Take a look at some of the services we provide. We believe in
+            quality and efficiency, with a commitment to keeping your vehicle in
+            top condition.
           </p>
         </div>
 
@@ -158,14 +81,19 @@ const GallerySection = () => {
         </div>
 
         {/* Modal View */}
-        <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
+        <Dialog
+          open={!!selectedImage}
+          onOpenChange={() => setSelectedImage(null)}
+        >
           <DialogContent className="sm:max-w-4xl bg-gray-900 border-gray-800">
             {selectedImage && (
               <div className="relative">
-                <img
+                <Image
                   src={selectedImage.src}
                   alt={selectedImage.alt}
                   className="w-full h-auto rounded-lg"
+                  width={500}
+                  height={300}
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
                   <h3 className="text-2xl font-bold text-orange-400 mb-2">
@@ -184,15 +112,15 @@ const GallerySection = () => {
   );
 };
 
-const PictureCard = ({ 
-  src, 
-  alt, 
-  title, 
-  description, 
+const PictureCard = ({
+  src,
+  alt,
+  title,
+  description,
   onClick,
   isLoading,
-  onLoad
-}: Picture & { 
+  onLoad,
+}: Picture & {
   onClick: () => void;
   isLoading: boolean;
   onLoad: () => void;
@@ -210,21 +138,25 @@ const PictureCard = ({
       {isLoading && (
         <div className="absolute inset-0 bg-gray-800 animate-pulse" />
       )}
-      
+
       {/* Image */}
       <div className="aspect-w-16 aspect-h-12 bg-gray-800">
-        <img
+        <Image
           src={src}
           alt={alt}
           onLoad={onLoad}
           className="w-full h-full object-cover transform transition-all duration-500 ease-out group-hover:scale-110"
+          width={500}
+          height={300}
         />
       </div>
 
       {/* Overlay */}
       <div
         className={`absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent 
-          transition-all duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+          transition-all duration-300 ${
+            isHovered ? "opacity-100" : "opacity-0"
+          }`}
       >
         <div className="absolute bottom-0 p-6 transform transition-all duration-300">
           <h3 className="text-xl font-bold text-orange-400 mb-2 transform transition-all duration-300">

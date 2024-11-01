@@ -5,10 +5,8 @@ import { Button } from "@/components/ui/button";
 import {
   Settings,
   Battery,
-  Tool,
   Radio,
   Gauge,
-  Oil,
   Crop,
   Activity,
   Wrench,
