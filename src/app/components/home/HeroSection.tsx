@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { IMAGE_BASE_URL } from "@/constants/constants";
 
 interface HeroSectionProps {
   text: string;
@@ -59,7 +60,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ text, router }) => {
         {/* Background image with Next.js Image component */}
         <div className="absolute inset-0">
           <Image
-            src="/garage1.jpg"
+            src={`${IMAGE_BASE_URL}/garage1.jpg`}
             alt="Garage Background"
             fill
             priority

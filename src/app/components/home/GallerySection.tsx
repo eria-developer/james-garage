@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ZoomIn, Camera } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import Image from "next/image";
+import { IMAGE_BASE_URL } from "@/constants/constants";
 
 interface Picture {
   src: string;
@@ -12,27 +13,27 @@ interface Picture {
 
 const pictures: Picture[] = [
   {
-    src: "/garage1.jpg",
+    src: `${IMAGE_BASE_URL}/garage1.jpg`,
     alt: "Mechanic working on engine",
     title: "Engine Diagnostics",
     description:
       "State-of-the-art diagnostics for accurate and reliable results.",
   },
   {
-    src: "/garage2.jpg",
+    src: `${IMAGE_BASE_URL}/garage2.jpg`,
     alt: "Tire replacement",
     title: "Tire Replacement",
     description:
       "High-quality tire services for better safety and performance.",
   },
   {
-    src: "/garage7.jpg",
+    src: `${IMAGE_BASE_URL}/garage7.jpg`,
     alt: "Oil change service",
     title: "Oil Change",
     description: "Regular oil changes to keep your engine running smoothly.",
   },
   {
-    src: "/garage4.jpg",
+    src: `${IMAGE_BASE_URL}/garage4.jpg`,
     alt: "Battery check",
     title: "Battery Checks",
     description:

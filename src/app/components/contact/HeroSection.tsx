@@ -1,3 +1,4 @@
+import { IMAGE_BASE_URL } from "@/constants/constants";
 import React from "react";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
@@ -5,7 +6,7 @@ const HeroSection: React.FC = () => {
   return (
     <div
       className="relative grid grid-cols-2 h-[600px] bg-cover bg-center"
-      style={{ backgroundImage: "url('/contact.jpg')" }}
+      style={{ backgroundImage: `url(${IMAGE_BASE_URL}/contact.jpg)` }}
     >
       <div className="absolute inset-0 bg-black opacity-50" />
       <div className="hidden md:block" />

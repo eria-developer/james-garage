@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Quote } from "lucide-react";
+import { IMAGE_BASE_URL } from "@/constants/constants";
 
 const CeoMessageSection = () => {
   const [isVideoOpen, setIsVideoOpen] = React.useState(false);
@@ -24,7 +25,7 @@ const CeoMessageSection = () => {
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.5 }}
-                    src="/ceo.jpeg"
+                    src={`${IMAGE_BASE_URL}/ceo.jpeg`}
                     alt="CEO Name"
                     className="relative w-64 h-64 rounded-full object-cover border-4 border-orange-500/50"
                   />

@@ -24,7 +24,8 @@ const ContactHero = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl font-bold leading-tight"
           >
-            Let's Start a <span className="text-orange-500">Conversation</span>
+            Let&apos;s Start a{" "}
+            <span className="text-orange-500">Conversation</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -32,8 +33,8 @@ const ContactHero = () => {
             transition={{ delay: 0.2 }}
             className="text-xl text-gray-300"
           >
-            We're here to transform your automotive dreams into reality. Reach
-            out and experience excellence.
+            We&apos;re here to transform your automotive dreams into reality.
+            Reach out and experience excellence.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -58,8 +59,19 @@ const ContactHero = () => {
   );
 };
 
+type FormData = {
+  name: string;
+  email: string;
+  phone: string;
+  category: string;
+  message: string;
+  source: string;
+  gender: string;
+  updates: boolean;
+};
+
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     phone: "",
@@ -71,13 +83,16 @@ const ContactForm = () => {
   });
   const [submitted, setSubmitted] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-  const [currentDate, setCurrentDate] = useState(Date.now());
 
   useEffect(() => {
-    setCurrentDate(Date.now());
+    // setCurrentDate(Date.now()); // Removed this line
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -85,7 +100,7 @@ const ContactForm = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Simulate form submission
     setTimeout(() => {
@@ -349,9 +364,9 @@ const ContactForm = () => {
 const ContactPage = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      <Navbar />
       <ContactHero />
       <ContactForm />
+      <Navbar />
       <Footer />
     </div>
   );
