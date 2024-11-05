@@ -20,7 +20,7 @@ export default function Home() {
       <GallerySection />
       <CeoMessageSection />
       <TestimonialsAndTrustSection />
-      <Footer />
+      <Footer 
     </div>
   );
 }
